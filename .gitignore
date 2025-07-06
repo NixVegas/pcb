@@ -1,0 +1,4 @@
+result*
+nixos-backups
+fp-info-cache
+*.lck
