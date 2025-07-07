@@ -1,11 +1,13 @@
 {
   lib,
   fetchzip,
+  fetchFromGitHub,
   stdenvNoCC,
   kicad,
   python3,
   jq,
   moreutils,
+  rustPlatform,
 }:
 
 let
@@ -59,7 +61,22 @@ let
       runHook postInstall
     '';
   };
+
   kicadPython3 = python3.withPackages (ps: [ ps.wxpython ps.kicad ]);
+
+  kicad-text-injector = rustPlatform.buildRustPackage (finalAttrs: {
+    pname = "kicad-text-injector";
+    version = "0.3.2";
+
+    src = fetchFromGitHub {
+      owner = "hoijui";
+      repo = "kicad-text-injector";
+      tag = finalAttrs.version;
+      hash = "sha256-3m9tcvFf6v6Yxj2svpzZfhzHWzBEnXpB6HQGGOF8tVQ=";
+    };
+
+    cargoHash = "sha256-EPKOCvyD7MpBFQO7h5qB14jlMcaPjg3G1HC9BfXyXo8=";
+  });
 in
 stdenvNoCC.mkDerivation {
   pname = "nix-badge";
@@ -72,6 +89,7 @@ stdenvNoCC.mkDerivation {
     kicadPython3
     jq
     moreutils
+    kicad-text-injector
   ];
 
   layers = [
@@ -86,7 +104,7 @@ stdenvNoCC.mkDerivation {
     "Edge.Cuts"
   ];
 
-  outputs = [ "out" "checks" "jlcpcb" ];
+  outputs = [ "out" "check" "fab" "render" ];
 
   configurePhase = ''
     runHook preConfigure
@@ -102,16 +120,7 @@ stdenvNoCC.mkDerivation {
       cp --no-preserve=mode "$file" "$config/"
     done
 
-    jq '.text_variables.out = $out
-      | .text_variables.name = $name
-      | .text_variables.pname = $pname
-      | .text_variables.version = $version' \
-      --arg out "$out" \
-      --arg name "$name" \
-      --arg pname "$pname" \
-      --arg version "$version" \
-      < nixos.kicad_pro | \
-      sponge nixos.kicad_pro
+    kicad-text-injector -e -i nixos.kicad_pcb | sponge nixos.kicad_pcb
 
     runHook postConfigure
   '';
@@ -150,13 +159,22 @@ stdenvNoCC.mkDerivation {
     runHook postCheck
   '';
 
+  postCheck = ''
+    args=(--width 2048 --height 2048 --quality high --perspective nixos.kicad_pcb)
+
+    mkdir -p render
+    kicad-cli pcb render --side top --output render/top.png "''${args[@]}"
+    kicad-cli pcb render --side bottom --output render/bottom.png "''${args[@]}"
+  '';
+
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out $checks $jlcpcb
-    mv *.report $checks
+    mkdir -p $out $check $fab $render
+    mv *.report $check
     mv gerbers/* $out/
-    mv production/* $jlcpcb/
+    mv production/* $fab/
+    mv render/* $render/
 
     runHook postInstall
   '';
