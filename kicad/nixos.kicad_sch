@@ -2767,7 +2767,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "PCM_JLCPCB-Diodes:Schottky,B0540W"
+		(symbol "PCM_JLCPCB-Diodes:Schottky,B1040W"
 			(pin_numbers
 				(hide yes)
 			)
@@ -2786,7 +2786,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "B0540W"
+			(property "Value" "B1040W"
 				(at 2.032 -1.2122 0)
 				(effects
 					(font
@@ -2804,7 +2804,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2308281514_hongjiacheng-B0540W_C7420325.pdf"
+			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2406171608_hongjiacheng-B1040W_C22466377.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2813,7 +2813,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "40V Independent Type 500mA 510mV@500mA SOD-123 Schottky Diodes ROHS"
+			(property "Description" "40V Independent Type 1A 550mV@700mA SOD-123 Schottky Diodes ROHS"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2822,7 +2822,7 @@
 					(hide yes)
 				)
 			)
-			(property "LCSC" "C7420325"
+			(property "LCSC" "C22466377"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2831,7 +2831,7 @@
 					(hide yes)
 				)
 			)
-			(property "Stock" "67313"
+			(property "Stock" "4982"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2840,7 +2840,7 @@
 					(hide yes)
 				)
 			)
-			(property "Price" "0.018USD"
+			(property "Price" "0.028USD"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2858,7 +2858,7 @@
 					(hide yes)
 				)
 			)
-			(property "Minimum Qty" "20"
+			(property "Minimum Qty" "15"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2867,7 +2867,7 @@
 					(hide yes)
 				)
 			)
-			(property "Attrition Qty" "10"
+			(property "Attrition Qty" "4"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2885,7 +2885,7 @@
 					(hide yes)
 				)
 			)
-			(property "Category" "Diodes,Schottky Barrier Diodes (SBD)"
+			(property "Category" "Diodes,Schottky Diodes"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2903,61 +2903,7 @@
 					(hide yes)
 				)
 			)
-			(property "Part" "B0540W"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Forward Voltage (Vf@If)" "0.51V@500mA"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Reverse Voltage (Vr)" "40V"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Average Rectified Current (Io)" "0.5A"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Diode Configuration" "Single"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Peak forward surge current" "5.5A"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Reverse Leakage Current (Ir)" "20uA@40V"
+			(property "Part" "B1040W"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2975,7 +2921,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "Schottky,B0540W_0_1"
+			(symbol "Schottky,B1040W_0_1"
 				(polyline
 					(pts
 						(xy -1.27 1.27) (xy 0 -1.27) (xy 1.27 1.27) (xy -1.27 1.27)
@@ -3001,7 +2947,7 @@
 					)
 				)
 			)
-			(symbol "Schottky,B0540W_1_1"
+			(symbol "Schottky,B1040W_1_1"
 				(pin passive line
 					(at 0 3.81 270)
 					(length 3.81)
@@ -4313,6 +4259,68 @@
 								(size 1.27 1.27)
 							)
 						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "PCM_JLCPCB-Manufacturing:Part Number, PCM_JLCPCB, 0.8x0.15mm"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "PN"
+				(at 2.286 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "PCM_JLCPCB:Part_Num_JLCPCB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://jlcpcb.com/help/article/How-to-remove-order-number-from-your-PCB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "To indicate the location, simply add the text \"JLCJLCJLCJLC\" to the silk layer and select the \"Specify a location\" option when placing your order. Please note that if this option is not chosen, we may not notice that you have added the text.   Note: Use only \"JLCJLCJLCJLC\" without any additional characters. The font size should be larger than 0.8mm in height and 0.15mm in width."
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Part Number, PCM_JLCPCB, 0.8x0.15mm_0_1"
+				(rectangle
+					(start 0 0.635)
+					(end 0.635 -0.635)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
 					)
 				)
 			)
@@ -7240,7 +7248,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_FET:DMG2302U"
+		(symbol "Transistor_FET:DMG2301L"
 			(pin_names
 				(hide yes)
 			)
@@ -7256,7 +7264,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "DMG2302U"
+			(property "Value" "DMG2301L"
 				(at 5.08 0 0)
 				(effects
 					(font
@@ -7276,7 +7284,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.diodes.com/assets/Datasheets/DMG2302U.pdf"
+			(property "Datasheet" "https://www.diodes.com/assets/Datasheets/DMG2301L.pdf"
 				(at 5.08 -3.81 0)
 				(effects
 					(font
@@ -7286,7 +7294,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "4.2A Id, 20V Vds, N-Channel MOSFET, SOT-23"
+			(property "Description" "-3A Id, -20V Vds, P-Channel MOSFET, SOT-23"
 				(at 0 0 0)
 				(effects
 					(font
@@ -7295,7 +7303,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "N-Channel MOSFET"
+			(property "ki_keywords" "P-Channel MOSFET"
 				(at 0 0 0)
 				(effects
 					(font
@@ -7313,7 +7321,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "DMG2302U_0_1"
+			(symbol "DMG2301L_0_1"
 				(polyline
 					(pts
 						(xy 0.254 1.905) (xy 0.254 -1.905)
@@ -7352,6 +7360,18 @@
 				)
 				(polyline
 					(pts
+						(xy 0.762 1.778) (xy 3.302 1.778) (xy 3.302 -1.778) (xy 0.762 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
 						(xy 0.762 0.508) (xy 0.762 -0.508)
 					)
 					(stroke
@@ -7374,30 +7394,6 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
 				(circle
 					(center 1.651 0)
 					(radius 2.794)
@@ -7407,6 +7403,18 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 0) (xy 1.27 0.381) (xy 1.27 -0.381) (xy 2.286 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
 					)
 				)
 				(polyline
@@ -7457,7 +7465,7 @@
 				)
 				(polyline
 					(pts
-						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
+						(xy 2.794 -0.508) (xy 2.921 -0.381) (xy 3.683 -0.381) (xy 3.81 -0.254)
 					)
 					(stroke
 						(width 0)
@@ -7469,7 +7477,7 @@
 				)
 				(polyline
 					(pts
-						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+						(xy 3.302 -0.381) (xy 2.921 0.254) (xy 3.683 0.254) (xy 3.302 -0.381)
 					)
 					(stroke
 						(width 0)
@@ -7480,7 +7488,7 @@
 					)
 				)
 			)
-			(symbol "DMG2302U_1_1"
+			(symbol "DMG2301L_1_1"
 				(pin input line
 					(at -5.08 0 0)
 					(length 2.54)
@@ -18771,7 +18779,7 @@
 		)
 	)
 	(symbol
-		(lib_id "PCM_JLCPCB-Diodes:Schottky,B0540W")
+		(lib_id "PCM_JLCPCB-Diodes:Schottky,B1040W")
 		(at 85.09 40.64 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -18788,7 +18796,7 @@
 				)
 			)
 		)
-		(property "Value" "B0540W"
+		(property "Value" "B1040W"
 			(at 85.4075 36.83 90)
 			(effects
 				(font
@@ -18805,7 +18813,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2308281514_hongjiacheng-B0540W_C7420325.pdf"
+		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2406171608_hongjiacheng-B1040W_C22466377.pdf"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18814,7 +18822,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "40V Independent Type 500mA 510mV@500mA SOD-123 Schottky Diodes ROHS"
+		(property "Description" "40V Independent Type 1A 550mV@700mA SOD-123 Schottky Diodes ROHS"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18823,7 +18831,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C7420325"
+		(property "LCSC" "C22466377"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18832,7 +18840,7 @@
 				(hide yes)
 			)
 		)
-		(property "Stock" "67313"
+		(property "Stock" "4982"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18841,7 +18849,7 @@
 				(hide yes)
 			)
 		)
-		(property "Price" "0.018USD"
+		(property "Price" "0.028USD"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18859,7 +18867,7 @@
 				(hide yes)
 			)
 		)
-		(property "Minimum Qty" "20"
+		(property "Minimum Qty" "15"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18868,7 +18876,7 @@
 				(hide yes)
 			)
 		)
-		(property "Attrition Qty" "10"
+		(property "Attrition Qty" "4"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18886,7 +18894,7 @@
 				(hide yes)
 			)
 		)
-		(property "Category" "Diodes,Schottky Barrier Diodes (SBD)"
+		(property "Category" "Diodes,Schottky Diodes"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -18904,7 +18912,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part" "B0540W"
+		(property "Part" "B1040W"
 			(at 85.09 40.64 0)
 			(effects
 				(font
@@ -19489,6 +19497,70 @@
 			(project ""
 				(path "/213f4f4e-ef1d-49a7-9e26-bdfad0e5c16d"
 					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "PCM_JLCPCB-Manufacturing:Part Number, PCM_JLCPCB, 0.8x0.15mm")
+		(at 13.97 21.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d51b7836-639d-4a82-a643-5bee5d82cf5c")
+		(property "Reference" "PN1"
+			(at 15.24 20.9549 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 15.24 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "PCM_JLCPCB:Part_Num_JLCPCB"
+			(at 13.97 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/help/article/How-to-remove-order-number-from-your-PCB"
+			(at 13.97 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "To indicate the location, simply add the text \"JLCJLCJLCJLC\" to the silk layer and select the \"Specify a location\" option when placing your order. Please note that if this option is not chosen, we may not notice that you have added the text.   Note: Use only \"JLCJLCJLCJLC\" without any additional characters. The font size should be larger than 0.8mm in height and 0.15mm in width."
+			(at 13.97 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project ""
+				(path "/213f4f4e-ef1d-49a7-9e26-bdfad0e5c16d"
+					(reference "PN1")
 					(unit 1)
 				)
 			)
@@ -20559,7 +20631,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_FET:DMG2302U")
+		(lib_id "Transistor_FET:DMG2301L")
 		(at 86.36 29.21 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -20577,7 +20649,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DMG2302U"
+		(property "Value" "DMG2301L"
 			(at 92.71 30.4799 0)
 			(effects
 				(font
@@ -20597,7 +20669,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.diodes.com/assets/Datasheets/DMG2302U.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/DMG2301L.pdf"
 			(at 91.44 33.02 0)
 			(effects
 				(font
@@ -20607,7 +20679,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "4.2A Id, 20V Vds, N-Channel MOSFET, SOT-23"
+		(property "Description" "-3A Id, -20V Vds, P-Channel MOSFET, SOT-23"
 			(at 86.36 29.21 0)
 			(effects
 				(font
