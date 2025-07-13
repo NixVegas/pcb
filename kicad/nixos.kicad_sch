@@ -13926,7 +13926,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Battery:BatteryHolder_Keystone_2466_1xAAA"
+		(property "Footprint" "Library:BA1AAAPC"
 			(at 137.16 168.656 90)
 			(effects
 				(font
@@ -19562,7 +19562,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Battery:BatteryHolder_Keystone_2466_1xAAA"
+		(property "Footprint" "Library:BA1AAAPC"
 			(at 132.334 163.83 90)
 			(effects
 				(font
@@ -22461,7 +22461,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Battery:BatteryHolder_Keystone_2466_1xAAA"
+		(property "Footprint" "Library:BA1AAAPC"
 			(at 137.16 186.436 90)
 			(effects
 				(font
