@@ -12,11 +12,11 @@
 
 let
   jlcPcbKicadLibrary = fetchzip rec {
-    version = "2025.07.06";
+    version = "2025.07.12";
     name = "JLCPCB-KiCad-Library-${version}.zip";
     url = "https://github.com/CDFER/JLCPCB-Kicad-Library/releases/download/${version}/${name}";
     stripRoot = false;
-    hash = "sha256-M5sjuQeyK9JmF6lQ1mroZ+E7uBW2D8sBi9x02Y8oi6g=";
+    hash = "sha256-SrRr7RKCWSCgQAX+BG4XXNYGAr5ek2EZEvWQ6e/HZww=";
   };
 
   fabricationToolkit = fetchzip rec {
@@ -80,7 +80,7 @@ let
 in
 stdenvNoCC.mkDerivation {
   pname = "nix-badge";
-  version = "0.5";
+  version = "0.8";
 
   src = ./kicad;
 

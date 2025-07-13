@@ -51,6 +51,7 @@
             packages = with pkgs; [
               kicad
               gerbv
+              inkscape
             ];
           };
 
