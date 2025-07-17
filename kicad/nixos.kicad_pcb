@@ -16792,7 +16792,7 @@
 		(descr "Through hole angled pin header, 1x03, 2.00mm pitch, 4.2mm pin length, single row")
 		(tags "Through hole angled pin header THT 1x03 2.00mm single row")
 		(property "Reference" "J3"
-			(at 3.1 2 180)
+			(at 3 -6.5 180)
 			(layer "B.SilkS")
 			(uuid "c4f5ff3d-4be7-44cc-a2fa-5a3de40adcb2")
 			(effects
