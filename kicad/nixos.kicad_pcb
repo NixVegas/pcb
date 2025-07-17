@@ -10352,7 +10352,7 @@
 			(at 0 1.43 180)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "50872284-4294-4d11-94e0-23d01c241209")
+			(uuid "5d848ba3-4e8a-49d2-a9ec-43bc904fd060")
 			(effects
 				(font
 					(size 1 1)
@@ -10364,7 +10364,7 @@
 		(property "Value" "White"
 			(at 0 -1.43 180)
 			(layer "B.Fab")
-			(uuid "3224303d-6e8e-44a7-8191-c9ad26961475")
+			(uuid "01d79b11-2141-4bc3-b595-dcbeaca56675")
 			(effects
 				(font
 					(size 1 1)
@@ -10378,7 +10378,7 @@
 			(unlocked yes)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "09afc5d2-ac0a-453b-8b80-65df5beabb50")
+			(uuid "4ce022e0-d171-4d1c-bbdd-ead6ad74fd89")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10392,7 +10392,7 @@
 			(unlocked yes)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "cc564248-16c7-48ab-bfa2-bf4a4be7494b")
+			(uuid "c06cbccc-4eb5-411b-b1cc-a0909036dd28")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -35796,7 +35796,7 @@
 		)
 	)
 	(gr_text "STAT"
-		(at 169 127 0)
+		(at 169.06 127 0)
 		(layer "B.SilkS")
 		(uuid "64040a3a-0a92-43ba-b484-3720bafccd5a")
 		(effects
@@ -35883,7 +35883,7 @@
 		)
 	)
 	(gr_text "PWR"
-		(at 169 133.5 0)
+		(at 168.917143 133.5 0)
 		(layer "B.SilkS")
 		(uuid "b11c9e19-f9ff-4421-9e67-2d14471a1194")
 		(effects
