@@ -1,0 +1,49 @@
+From 036b32f2902a18a3ef50b537cf0efeb9915d08e0 Mon Sep 17 00:00:00 2001
+From: Morgan Jones <me@numin.it>
+Date: Sun, 13 Jul 2025 01:00:44 -0700
+Subject: [PATCH] Allow custom key and IV
+
+---
+ decrypt.js | 4 ++--
+ encrypt.js | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/decrypt.js b/decrypt.js
+index 3af2558..68870f9 100644
+--- a/decrypt.js
++++ b/decrypt.js
+@@ -8,9 +8,9 @@ async function decrypt(input, output) {
+     fs.closeSync(fd);
+ 
+     // Only correct for test/Fabrication_ColorfulTopSilkscreen.FCTS
+-    const keydata = new Uint8Array([0x2A, 0x17, 0xAC, 0xBB, 0x07, 0x63, 0xEA, 0x69, 0x43, 0x4B, 0x25, 0x9d, 0xC8, 0x40, 0xEF, 0xEC]);
++    const keydata = Buffer.from(process.env.KEY || '2a17acbb0763ea69434b259dc840efec', 'hex');
+     const key = await crypto.subtle.importKey('raw', keydata, { "name": 'AES-GCM' }, true, [ 'decrypt' ]);
+-    const iv = new Uint8Array([0x55, 0xF2, 0xE6, 0xDD, 0xFC, 0x67, 0xAB, 0x10, 0xB3, 0x99, 0x02, 0x52, 0xD7, 0xFB, 0x1C, 0xDD]);
++    const iv = Buffer.from(process.env.IV || '55f2e6ddfc67ab10b3990252d7fb1cdd', 'hex');
+ 
+     const decrypted = await crypto.subtle.decrypt({
+         name: "AES-GCM",
+diff --git a/encrypt.js b/encrypt.js
+index f6381f5..4e68de6 100644
+--- a/encrypt.js
++++ b/encrypt.js
+@@ -33,13 +33,13 @@ function importPublicKey(pem) {
+ 
+ async function encrypt(input, output) {
+     const rsa_key = await importPublicKey(`-----BEGIN PUBLIC KEY-----
+-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzPtuUqJecaR/wWtctGT8
++${process.env.KEY || `MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzPtuUqJecaR/wWtctGT8
+ QuVslmDH3Ut3s8c1Ls4A+M9rwpeLjgDUqfcrSrTHBrl5k/dOeJEWMeNF7STWS5jo
+ WZE0H60cvf2bhormC9S6CRwq4Lw0ua0YQMo66R/qCtLVa5w6WkaPCz4b0xaHWtej
+ JH49C0T67rU2DkepXuMPpwNCflMU+WgEQioZEldUTD6gYpu2U5GrW4AE0AQiIo+j
+ e7tgN8PlBMbMaEfu0LokZyth1ugfuLAgyogWnedAegQmPZzAUe36Sni94AsDlhxm
+ mjFl+WQZzD3MclbEY6KQB5XL8zCR/J6pCUUwfHantLxY/gQi0XJG5hWWtDyH/fR2
+-lwIDAQAB
++lwIDAQAB`}
+ -----END PUBLIC KEY-----`);
+ 
+     const aes_keydata = crypto.getRandomValues(new Uint8Array(16));
+-- 
+2.47.0
+

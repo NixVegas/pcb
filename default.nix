@@ -1,13 +1,18 @@
 {
   lib,
   fetchzip,
-  fetchFromGitHub,
   stdenvNoCC,
   kicad,
   python3,
   jq,
   moreutils,
-  rustPlatform,
+  nixos-branding,
+  inkscape,
+  jlc-fcts-re,
+  kicad-text-injector,
+  pngcrush,
+  imagemagick,
+  zip,
 }:
 
 let
@@ -64,18 +69,31 @@ let
 
   kicadPython3 = python3.withPackages (ps: [ ps.wxpython ps.kicad ]);
 
-  kicad-text-injector = rustPlatform.buildRustPackage (finalAttrs: {
-    pname = "kicad-text-injector";
-    version = "0.3.2";
+  nixosLogoPng = stdenvNoCC.mkDerivation (finalAttrs: {
+    name = "${finalAttrs.logo.name}.png";
 
-    src = fetchFromGitHub {
-      owner = "hoijui";
-      repo = "kicad-text-injector";
-      tag = finalAttrs.version;
-      hash = "sha256-3m9tcvFf6v6Yxj2svpzZfhzHWzBEnXpB6HQGGOF8tVQ=";
-    };
+    logo = nixos-branding.artifacts.internal.nixos-logomark-default-gradient-none;
 
-    cargoHash = "sha256-EPKOCvyD7MpBFQO7h5qB14jlMcaPjg3G1HC9BfXyXo8=";
+    dontUnpack = true;
+
+    nativeBuildInputs = [
+      inkscape
+      pngcrush
+    ];
+
+    buildPhase = ''
+      runHook preBuild
+      HOME="$(pwd)" inkscape --export-background=transparent --export-background-opacity=0 -w 4096 -o $name \
+        $logo/*.svg
+      pngcrush -brute -rem alla -ow $name
+      runHook postBuild
+    '';
+
+    installPhase = ''
+      runHook preInstall
+      mv $name $out
+      runHook postInstall
+    '';
   });
 in
 stdenvNoCC.mkDerivation {
@@ -84,12 +102,16 @@ stdenvNoCC.mkDerivation {
 
   src = ./kicad;
 
+  inherit nixosLogoPng;
+
   nativeBuildInputs = [
     kicad
     kicadPython3
-    jq
     moreutils
+    imagemagick
+    jlc-fcts-re
     kicad-text-injector
+    zip
   ];
 
   layers = [
@@ -137,8 +159,22 @@ stdenvNoCC.mkDerivation {
       --generate-map --map-format gerberx2 \
       nixos.kicad_pcb
 
+    front_silkscreen=Fabrication_ColorfulTopSilkscreen.FCTS
+    back_silkscreen=Fabrication_ColorfulBottomSilkscreen.FCBS
+    outline_silkscreen=Fabrication_ColorfulBoardOutlineLayer.FCBO
+
+    substituteInPlace jlc-front.svg \
+      --replace-fail '@width@' "$(identify -format '%w' $nixosLogoPng)" \
+      --replace-fail '@height@' "$(identify -format '%h' $nixosLogoPng)" \
+      --replace-fail '@png@' "$(base64 -w0 < $nixosLogoPng)"
+    jlc-fcts-encrypt jlc-front.svg gerbers/$front_silkscreen
+    jlc-fcts-encrypt jlc-back.svg gerbers/$back_silkscreen
+    jlc-fcts-encrypt jlc-outline.svg gerbers/$outline_silkscreen
+
     jlc_plugin="$(echo $_3rdparty/plugins/*JLC-Plugin*)"
     PYTHONPATH="$(dirname -- "$jlc_plugin")" python -m "$(basename -- "$jlc_plugin").cli" -p nixos.kicad_pcb
+
+    (cd gerbers && zip -uv ../production/*.zip $front_silkscreen $back_silkscreen $outline_silkscreen)
 
     runHook postBuild
   '';

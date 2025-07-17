@@ -2,3 +2,4 @@ result*
 nixos-backups
 fp-info-cache
 *.lck
+#auto_saved_files#
