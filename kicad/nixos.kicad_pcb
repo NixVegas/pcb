@@ -2704,8 +2704,8 @@
 				(justify right bottom mirror)
 			)
 		)
-		(fp_text user "IO15"
-			(at -3.685715 11 90)
+		(fp_text user "IO15/STAT"
+			(at 8.200001 11 90)
 			(unlocked yes)
 			(layer "B.SilkS")
 			(uuid "588aab21-4d61-44b5-a46d-96d146d50da9")
@@ -2714,11 +2714,11 @@
 					(size 0.6 0.6)
 					(thickness 0.075)
 				)
-				(justify right bottom mirror)
+				(justify left bottom mirror)
 			)
 		)
-		(fp_text user "IO9/BSTAT"
-			(at 8.228572 7 90)
+		(fp_text user "IO9/BOOT"
+			(at 7.942856 7 90)
 			(unlocked yes)
 			(layer "B.SilkS")
 			(uuid "6bf8d047-4a60-44fb-87c7-75b6e3158232")
@@ -2822,7 +2822,7 @@
 			)
 		)
 		(fp_text user "LED1_OUT"
-			(at 7.885714 11 90)
+			(at -6 11 90)
 			(unlocked yes)
 			(layer "B.SilkS")
 			(uuid "f049f3f9-6547-4b82-9dee-256e225363e5")
@@ -2831,7 +2831,7 @@
 					(size 0.6 0.6)
 					(thickness 0.075)
 				)
-				(justify left bottom mirror)
+				(justify right bottom mirror)
 			)
 		)
 		(fp_text user "IO6/SDA"
@@ -5116,7 +5116,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/fb9d0387-8cf8-4acd-8202-786665d930b4")
+		(path "/d213e83a-cdbe-41b9-888f-169c8357d2ac")
 		(sheetname "/")
 		(sheetfile "nixos.kicad_sch")
 		(solder_mask_margin 0.038)
