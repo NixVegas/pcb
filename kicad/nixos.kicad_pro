@@ -1071,7 +1071,7 @@
     ]
   ],
   "text_variables": {
-    "fab": "/nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-nix-badge-0.0-fab",
+    "fab": "/nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-nix-badge-0.0-20250101-0123abc-fab",
     "name": "nix-badge-0.0",
     "out": "/nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-nix-badge-0.0",
     "pname": "nix-badge",

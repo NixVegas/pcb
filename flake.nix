@@ -6,6 +6,7 @@
       url = "github:NixOS/branding";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flakever.url = "github:numinit/flakever";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
@@ -14,14 +15,23 @@
       self,
       flake-parts,
       branding,
+      flakever,
       ...
     }:
+    let
+      flakeverConfig = flakever.lib.mkFlakever {
+        inherit inputs;
+
+        digits = [ 1 2 2 ];
+      };
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.flake-parts.flakeModules.easyOverlay
       ];
 
       flake = {
+        versionTemplate = "1.0-<lastModifiedDate>-<rev>";
       };
 
       systems = [
@@ -65,7 +75,9 @@
             ];
           };
 
-          packages.default = pkgs.callPackage ./. { };
+          packages.default = pkgs.callPackage ./. {
+            inherit (flakeverConfig) version versionCode;
+          };
         };
     };
 }

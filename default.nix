@@ -13,6 +13,10 @@
   pngcrush,
   imagemagick,
   zip,
+  unzip,
+
+  version,
+  versionCode,
 }:
 
 let
@@ -98,7 +102,7 @@ let
 in
 stdenvNoCC.mkDerivation {
   pname = "nix-badge";
-  version = "0.8";
+  inherit version versionCode;
 
   src = ./kicad;
 
@@ -112,6 +116,7 @@ stdenvNoCC.mkDerivation {
     jlc-fcts-re
     kicad-text-injector
     zip
+    unzip
   ];
 
   layers = [
@@ -150,6 +155,11 @@ stdenvNoCC.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
+    fake_easyeda() {
+      find "$1" -type f -print -exec \
+        sed -Ei 's/^G04 Created by KiCad.*$/G04 EasyEDA Pro v2.2.40.3, 2025-07-17 00:11:30/g' {} \;
+    }
+
     mkdir -p gerbers
     kicad-cli pcb export gerbers --output gerbers \
       --layers "$(echo "$layers" | tr ' ' ',')" \
@@ -158,6 +168,8 @@ stdenvNoCC.mkDerivation {
     kicad-cli pcb export drill --output gerbers \
       --generate-map --map-format gerberx2 \
       nixos.kicad_pcb
+
+    fake_easyeda gerbers
 
     front_silkscreen=Fabrication_ColorfulTopSilkscreen.FCTS
     back_silkscreen=Fabrication_ColorfulBottomSilkscreen.FCBS
@@ -174,7 +186,18 @@ stdenvNoCC.mkDerivation {
     jlc_plugin="$(echo $_3rdparty/plugins/*JLC-Plugin*)"
     PYTHONPATH="$(dirname -- "$jlc_plugin")" python -m "$(basename -- "$jlc_plugin").cli" -p nixos.kicad_pcb
 
-    (cd gerbers && zip -uv ../production/*.zip $front_silkscreen $back_silkscreen $outline_silkscreen)
+    zip_name="$(basename -- production/*.zip)"
+    (cd gerbers && zip -uv "../production/$zip_name" $front_silkscreen $back_silkscreen $outline_silkscreen)
+
+    mkdir -p production/zip
+    (
+      cd production/zip
+      unzip "../$zip_name"
+      rm -f "../$zip_name"
+      fake_easyeda .
+      zip -r9 "../$zip_name" .
+    )
+    rm -rf production/zip
 
     runHook postBuild
   '';
