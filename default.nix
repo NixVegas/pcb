@@ -156,7 +156,7 @@ stdenvNoCC.mkDerivation {
   '';
 
   postCheck = ''
-    args=(--width 2048 --height 2048 --quality high --perspective nixos.kicad_pcb)
+    args=(--width 3072 --height 3072 --quality high --perspective nixos.kicad_pcb)
 
     mkdir -p render
     kicad-cli pcb render --side top --output render/top.png "''${args[@]}"
