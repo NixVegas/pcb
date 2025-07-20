@@ -8,7 +8,6 @@
   moreutils,
   nixos-branding,
   inkscape,
-  jlc-fcts-re,
   kicad-text-injector,
   pngcrush,
   imagemagick,
@@ -21,11 +20,11 @@
 
 let
   jlcPcbKicadLibrary = fetchzip rec {
-    version = "2025.07.12";
+    version = "2025.07.19";
     name = "JLCPCB-KiCad-Library-${version}.zip";
     url = "https://github.com/CDFER/JLCPCB-Kicad-Library/releases/download/${version}/${name}";
     stripRoot = false;
-    hash = "sha256-SrRr7RKCWSCgQAX+BG4XXNYGAr5ek2EZEvWQ6e/HZww=";
+    hash = "sha256-RyvNft4LSm5dbPjbA2AhI5zInJlZm20ElNoE5wAEzN4=";
   };
 
   fabricationToolkit = fetchzip rec {
@@ -72,33 +71,6 @@ let
   };
 
   kicadPython3 = python3.withPackages (ps: [ ps.wxpython ps.kicad ]);
-
-  nixosLogoPng = stdenvNoCC.mkDerivation (finalAttrs: {
-    name = "${finalAttrs.logo.name}.png";
-
-    logo = nixos-branding.artifacts.internal.nixos-logomark-default-gradient-none;
-
-    dontUnpack = true;
-
-    nativeBuildInputs = [
-      inkscape
-      pngcrush
-    ];
-
-    buildPhase = ''
-      runHook preBuild
-      HOME="$(pwd)" inkscape --export-background=transparent --export-background-opacity=0 -w 4096 -o $name \
-        $logo/*.svg
-      pngcrush -brute -rem alla -ow $name
-      runHook postBuild
-    '';
-
-    installPhase = ''
-      runHook preInstall
-      mv $name $out
-      runHook postInstall
-    '';
-  });
 in
 stdenvNoCC.mkDerivation {
   pname = "nix-badge";
@@ -106,14 +78,11 @@ stdenvNoCC.mkDerivation {
 
   src = ./kicad;
 
-  inherit nixosLogoPng;
-
   nativeBuildInputs = [
     kicad
     kicadPython3
     moreutils
     imagemagick
-    jlc-fcts-re
     kicad-text-injector
     zip
     unzip
@@ -155,11 +124,6 @@ stdenvNoCC.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    fake_easyeda() {
-      find "$1" -type f -print -exec \
-        sed -Ei 's/^G04 Created by KiCad.*$/G04 EasyEDA Pro v2.2.40.3, 2025-07-17 00:11:30/g' {} \;
-    }
-
     mkdir -p gerbers
     kicad-cli pcb export gerbers --output gerbers \
       --layers "$(echo "$layers" | tr ' ' ',')" \
@@ -169,35 +133,8 @@ stdenvNoCC.mkDerivation {
       --generate-map --map-format gerberx2 \
       nixos.kicad_pcb
 
-    fake_easyeda gerbers
-
-    front_silkscreen=Fabrication_ColorfulTopSilkscreen.FCTS
-    back_silkscreen=Fabrication_ColorfulBottomSilkscreen.FCBS
-    outline_silkscreen=Fabrication_ColorfulBoardOutlineLayer.FCBO
-
-    substituteInPlace jlc-front.svg \
-      --replace-fail '@width@' "$(identify -format '%w' $nixosLogoPng)" \
-      --replace-fail '@height@' "$(identify -format '%h' $nixosLogoPng)" \
-      --replace-fail '@png@' "$(base64 -w0 < $nixosLogoPng)"
-    jlc-fcts-encrypt jlc-front.svg gerbers/$front_silkscreen
-    jlc-fcts-encrypt jlc-back.svg gerbers/$back_silkscreen
-    jlc-fcts-encrypt jlc-outline.svg gerbers/$outline_silkscreen
-
     jlc_plugin="$(echo $_3rdparty/plugins/*JLC-Plugin*)"
     PYTHONPATH="$(dirname -- "$jlc_plugin")" python -m "$(basename -- "$jlc_plugin").cli" -p nixos.kicad_pcb
-
-    zip_name="$(basename -- production/*.zip)"
-    (cd gerbers && zip -uv "../production/$zip_name" $front_silkscreen $back_silkscreen $outline_silkscreen)
-
-    mkdir -p production/zip
-    (
-      cd production/zip
-      unzip "../$zip_name"
-      rm -f "../$zip_name"
-      fake_easyeda .
-      zip -r9 "../$zip_name" .
-    )
-    rm -rf production/zip
 
     runHook postBuild
   '';

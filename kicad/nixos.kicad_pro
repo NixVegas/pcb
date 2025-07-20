@@ -570,8 +570,7 @@
         "name": "Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 0,
-        "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 1.0
+        "schematic_color": "rgba(0, 0, 0, 0.000)"
       }
     ],
     "meta": {
@@ -1073,7 +1072,7 @@
   "text_variables": {
     "fab": "/nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-nix-badge-0.0-20250101-0123abc-fab",
     "name": "nix-badge-0.0",
-    "out": "/nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-nix-badge-0.0",
+    "out": "/nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-nix-badge-0.0-20250101-0123abc-fab",
     "pname": "nix-badge",
     "version": "0.0"
   }
