@@ -3,6 +3,8 @@
 This repo contains KiCad files and Nix expressions for fabricating
 the Nix Badge using [JLCPCB](https://jlcpcb.com).
 
+![](/img/badge-jlc-render.png)
+
 ## Building
 
 - `nix build ^*`
@@ -39,6 +41,30 @@ exported KiCad project. Unfortunately the next step is quite manual, you'll have
 the output of that and put it into a replacement location in the KiCad PCB project. I usually
 draw a zone and then manually replace it, then copy-paste the generated component containing solder mask
 and Ctrl-move on top of it.
+
+## Colorful silkscreens
+
+Currently unsupported, even though JLCPCB has supported them since [early 2025](https://jlcpcb.com/blog/multi-color-silkscreen-pcb)
+and it would be neat to use the exact NixOS colors with a white ENIG PCB. In the meantime, the blue PCB design
+looks close enough.
+
+We package [JLC-FCTS-RE](https://github.com/Xerbo/JLC-FCTS-RE) with a patch to allow choosing the IV and key for decryption.
+Note [this Mastodon thread](https://mastodon.social/@arturo182/111372039141259892). If you'd like to decrypt a valid export,
+you can set a breakpoint and click the Gerber export button from EasyEDA (search the JS sources for
+`-----BEGIN PUBLIC KEY-----` to collect them from the web frontend).
+
+Note that _both_ IV and key are encrypted with [RSA-OAEP](https://datatracker.ietf.org/doc/html/rfc8017#section-7.1),
+so you can't decrypt the files afterwards without setting breakpoints on the frontend or otherwise logging out the IV
+and key. Encryption is simpler than decryption since the public key is known and JLC-FCTS-RE simply generates a random
+IV and key.
+
+The larger problem is that there isn't currently a way to generate silkscreen SVGs that are actually valid.
+All attempts have so far resulted in breaking JLCPCB's preview, even if the gerbers are modified in-place
+to look like they were produced by EasyEDA. Check the commit history for previous attempts.
+
+There likely needs to be a more complex build step to generate these SVGs from the combination of a background base layer,
+edge cuts, and silkscreen zones knocked out by the solder mask layer, on both sides of the board. While it all seems
+doable from KiCad, all the pieces aren't working together yet.
 
 ## Fabrication playbook
 
