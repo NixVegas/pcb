@@ -72,6 +72,7 @@
               inkscape
               kicad-text-injector
               jlc-fcts-re
+              ruby
             ];
           };
 
