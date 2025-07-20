@@ -42,6 +42,8 @@ the output of that and put it into a replacement location in the KiCad PCB proje
 draw a zone and then manually replace it, then copy-paste the generated component containing solder mask
 and Ctrl-move on top of it.
 
+More info in [this talk](https://www.youtube.com/watch?v=Sbkvza8cKQE) at DC27.
+
 ## Colorful silkscreens
 
 Currently unsupported, even though JLCPCB has supported them since [early 2025](https://jlcpcb.com/blog/multi-color-silkscreen-pcb)
