@@ -108,9 +108,9 @@ Lead time is expected to be ~10 days.
 ## Trimmings
 
 - Battery holders ([BA1AAAPC](https://www.onlinecomponents.com/en/productdetail/memory-protection-devices/ba1aaapc-50288403.html))
-- Batteries (ton of AAA [from Amazon](https://www.amazon.com/dp/B07S2LN343))
+- Batteries (ton of AAA from Amazon)
 - Pin headers ([Amazon](https://www.amazon.com/dp/B00UBWKQLA))
-- Lanyards ([Amazon](https://www.amazon.com/dp/B0D4HK6VMV))
+- Lanyards (search Amazon for facemask lanyards, they need to have the right clasp)
 
 ## Cost
 
